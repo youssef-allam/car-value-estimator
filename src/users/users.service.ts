@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './users.entity.ts/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,7 +27,7 @@ export class UsersService {
   async update(id: number, attrs: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
     if (!user) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
 
     // this line is only to make using entity object instead of passing normal object to save method,
@@ -40,7 +40,7 @@ export class UsersService {
   async remove(id: number): Promise<User> {
     const user = await this.findOne(id);
     if (!user) {
-      throw new Error('User not found');
+      throw new NotFoundException('User not found');
     }
     return this.repo.remove(user);
   }
