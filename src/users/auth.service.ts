@@ -46,7 +46,6 @@ export class AuthService {
     if (storedHash != hash.toString('hex'))
       throw new BadRequestException('passowrd or email is worng');
 
-    console.log('signed to user');
 
     return user;
   }
