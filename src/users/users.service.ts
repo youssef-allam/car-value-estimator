@@ -16,7 +16,9 @@ export class UsersService {
     return this.repo.save(user);
   }
 
-  findOne(id: number): Promise<User | null> {
+  findOne(id: number): Promise<User | null> | null {
+    if(!id)
+        return null;
     return this.repo.findOne({ where: { id } });
   }
 
