@@ -5,10 +5,19 @@ import { User } from './users.entity.ts/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
 import { currentUserInterceptor } from './interceptors/current-user.interceptor';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
-  providers: [UsersService, AuthService, currentUserInterceptor],
+  providers: [
+    UsersService,
+    AuthService,
+    currentUserInterceptor,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: currentUserInterceptor,
+    },
+  ],
 })
 export class UsersModule {}
