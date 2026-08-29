@@ -36,7 +36,7 @@ export class AuthService {
     const [user] = await this.userService.find(email);
 
     if (!user) {
-      throw new BadRequestException('User no found');
+      throw new BadRequestException('User not found');
     }
 
     const [salt, storedHash] = user.password.split('.');
