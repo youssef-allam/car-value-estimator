@@ -8,7 +8,9 @@ import { User } from './users/users.entity.ts/user.entity';
 import { Report } from './reports/reports.entity.ts/report.entity';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-const cookieSession = require('cookie-session');
+
+
+import cookieSession  from 'cookie-session';
 
 @Module({
   imports: [
