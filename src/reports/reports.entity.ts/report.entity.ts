@@ -1,10 +1,14 @@
 import { User } from 'src/users/users.entity.ts/user.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { deflate } from 'zlib';
 
 @Entity()
 export class Report {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column({ default: false })
+  approved: boolean;
 
   @Column()
   price: number;
@@ -27,7 +31,6 @@ export class Report {
   @Column()
   lat: number;
 
-  @ManyToOne(()=> User, user => user.reports)
+  @ManyToOne(() => User, (user) => user.reports)
   user: User;
-
 }
