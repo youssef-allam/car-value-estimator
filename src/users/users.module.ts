@@ -4,8 +4,6 @@ import { UsersService } from './users.service';
 import { User } from './users.entity.ts/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
-import { currentUserInterceptor } from './interceptors/current-user.interceptor';
-import { APP_INTERCEPTOR } from '@nestjs/core';
 import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
 
 @Module({
@@ -14,11 +12,6 @@ import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
   providers: [
     UsersService,
     AuthService,
-    currentUserInterceptor,
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: currentUserInterceptor,
-    },
   ],
 })
 export class UsersModule {
