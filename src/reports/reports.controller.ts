@@ -7,6 +7,7 @@ import { User } from 'src/users/users.entity.ts/user.entity';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { ReportDto } from './dtos/report.dto';
 import { ApporvedReportDto } from './dtos/Approved-report.dto';
+import { AdminGuard } from 'src/guards/admin.guard';
 
 
 @Serialize(ReportDto)
@@ -21,6 +22,7 @@ export class ReportsController {
     }
 
     @Patch("/:id")
+    @UseGuards(AdminGuard)
     approveReport(@Param('id', ParseIntPipe) id : number, @Body() body: ApporvedReportDto){
         this.reportsService.toggleApproval(id , body.approved);
     }
