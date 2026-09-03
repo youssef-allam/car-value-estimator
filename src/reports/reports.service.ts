@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateReportDto } from './dtos/create-report.dto';
 import { User } from 'src/users/users.entity.ts/user.entity';
 import { ApporvedReportDto } from './dtos/Approved-report.dto';
+import { GetEstimateDto } from './dtos/get-estimate.dto';
 
 @Injectable()
 export class ReportsService {
@@ -26,5 +27,9 @@ export class ReportsService {
 
     report.approved = approved;
     return await this.repo.save(report);
+  }
+
+  createEstimate(query: GetEstimateDto) {
+      throw new Error('Method not implemented.');
   }
 }
