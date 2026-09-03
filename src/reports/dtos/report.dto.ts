@@ -29,7 +29,8 @@ export class ReportDto {
   @Expose()
   lat: number;
 
-  @Transform(({ obj }) => obj.user.id)
+  @Transform(({ obj })  => obj.user ? obj.user.id : null)
   @Expose()
   userId: number;
+
 }

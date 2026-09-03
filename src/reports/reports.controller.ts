@@ -11,13 +11,13 @@ import { AdminGuard } from 'src/guards/admin.guard';
 import { GetEstimateDto } from './dtos/get-estimate.dto';
 
 
-@Serialize(ReportDto)
 @Controller('reports')
 export class ReportsController {
     constructor(private readonly reportsService: ReportsService){}
-
+    
     @Post()
     @UseGuards(AuthGuard)
+    @Serialize(ReportDto)
     createReport(@Body() body: CreateReportDto, @CurrentUser() user:User){
         return this.reportsService.create(body, user);
     }
