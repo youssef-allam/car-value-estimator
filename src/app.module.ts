@@ -9,7 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 
 import cookieSession  from 'cookie-session';
-import { AppDataSource } from './data-source';
+
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { AppDataSource } from './data-source';
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`
     }),
-    TypeOrmModule.forRoot(AppDataSource.options),
+    TypeOrmModule.forRoot(require('./data-source').AppDataSource.options),
     UsersModule,
     ReportsModule,
   ],

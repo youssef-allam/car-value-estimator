@@ -1,8 +1,8 @@
-import { DataSource } from 'typeorm';
+const { DataSource } = require('typeorm');
 
-let dbconfig: any = {
+let dbconfig = {
   synchronize: false,
-  migrations: ['src/migrations/*{.ts,.js}'],
+  migrations: ['**/migrations/*.js'], // compiled migrations
 };
 
 switch (process.env.NODE_ENV) {
@@ -10,21 +10,22 @@ switch (process.env.NODE_ENV) {
     Object.assign(dbconfig, {
       type: 'sqlite',
       database: 'db.sqlite',
-      entities: ['dist/**/*.entity.js'], // compiled JS files
+      entities: ['dist/**/*.entity.js'], // compiled entities
     });
     break;
   case 'test':
     Object.assign(dbconfig, {
       type: 'sqlite',
       database: 'test.db.sqlite',
-      entities: ['src/**/*.entity.ts'], // raw TS files for tests
+      entities: ['src/**/*.entity.ts'], // raw TS for tests
     });
     break;
   case 'prod':
-    // add production DB config here (e.g. Postgres)
+    // production DB config (e.g. Postgres)
     break;
   default:
     throw new Error(`Unknown environment: ${process.env.NODE_ENV}`);
 }
 
-export const AppDataSource = new DataSource(dbconfig);
+const AppDataSource = new DataSource(dbconfig);
+module.exports = { AppDataSource };
