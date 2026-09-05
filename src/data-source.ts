@@ -18,6 +18,7 @@ switch (process.env.NODE_ENV) {
       type: 'sqlite',
       database: 'test.db.sqlite',
       entities: ['src/**/*.entity.ts'], // raw TS for tests
+      migrationsRun: true, // run migrations automatically for tests
     });
     break;
   case 'prod':
