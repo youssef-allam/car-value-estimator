@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from './users.entity.ts/user.entity';
+import { User } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -17,8 +17,7 @@ export class UsersService {
   }
 
   findOne(id: number): Promise<User | null> | null {
-    if(!id)
-        return null;
+    if (!id) return null;
     return this.repo.findOne({ where: { id } });
   }
 

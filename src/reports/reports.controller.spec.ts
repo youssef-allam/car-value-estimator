@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ReportsController } from './reports.controller';
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './dtos/create-report.dto';
-import { Report } from './reports.entity.ts/report.entity';
+import { Report } from './report.entity';
 
 describe('ReportsController', () => {
   let controller: ReportsController;
@@ -31,6 +31,4 @@ describe('ReportsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-
-
 });

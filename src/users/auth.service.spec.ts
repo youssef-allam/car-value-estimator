@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
-import { User } from './users.entity.ts/user.entity';
+import { User } from './user.entity';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { BadRequestException } from '@nestjs/common';
 
@@ -16,7 +16,11 @@ describe('AuthService', () => {
         return Promise.resolve(filteredUsers);
       },
       createUser: ({ email, password }: CreateUserDto) => {
-        const user = { id: Math.floor(Math.random() * 99999), email, password } as User;
+        const user = {
+          id: Math.floor(Math.random() * 99999),
+          email,
+          password,
+        } as User;
         users.push(user);
         return Promise.resolve(user);
       },

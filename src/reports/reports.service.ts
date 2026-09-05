@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException, UseGuards } from '@nestjs/common';
-import { Report } from './reports.entity.ts/report.entity';
+import { Report } from './report.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateReportDto } from './dtos/create-report.dto';
-import { User } from 'src/users/users.entity.ts/user.entity';
+import { User } from 'src/users/user.entity';
 import { ApporvedReportDto } from './dtos/Approved-report.dto';
 import { GetEstimateDto } from './dtos/get-estimate.dto';
 
@@ -29,7 +29,7 @@ export class ReportsService {
     return await this.repo.save(report);
   }
 
-  createEstimate({make , model , lng , lat , year , mileage}: GetEstimateDto) {
+  createEstimate({ make, model, lng, lat, year, mileage }: GetEstimateDto) {
     return this.repo
       .createQueryBuilder()
       .select('avg(price)', 'price')
@@ -42,6 +42,7 @@ export class ReportsService {
       .orderBy('ABS(mileage - :mileage)', 'DESC')
       .setParameters({ mileage })
       .limit(3)
-      .getRawOne().catch(err => console.error(err));
+      .getRawOne()
+      .catch((err) => console.error(err));
   }
 }

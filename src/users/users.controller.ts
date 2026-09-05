@@ -20,7 +20,7 @@ import { UserDto } from './dtos/user.dto';
 import { AuthService } from './auth.service';
 
 import { CurrentUser } from './decorators/current-user.decorator';
-import { User } from './users.entity.ts/user.entity';
+import { User } from './user.entity';
 import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
@@ -33,12 +33,12 @@ export class UsersController {
 
   @Get('whoAmI')
   @UseGuards(AuthGuard)
-  whoAmI(@CurrentUser() user : User){
+  whoAmI(@CurrentUser() user: User) {
     return user;
   }
 
   @Post('signout')
-  signOut(@Session() session : any){
+  signOut(@Session() session: any) {
     session.userId = null;
     console.log('signed out');
     return;

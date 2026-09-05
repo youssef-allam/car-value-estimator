@@ -1,4 +1,4 @@
-import { User } from 'src/users/users.entity.ts/user.entity';
+import { User } from 'src/users/user.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { deflate } from 'zlib';
 

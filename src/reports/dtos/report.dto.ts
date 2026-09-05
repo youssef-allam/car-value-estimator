@@ -1,5 +1,5 @@
 import { Expose, Transform } from 'class-transformer';
-import { User } from 'src/users/users.entity.ts/user.entity';
+import { User } from 'src/users/user.entity';
 
 export class ReportDto {
   @Expose()
@@ -29,8 +29,7 @@ export class ReportDto {
   @Expose()
   lat: number;
 
-  @Transform(({ obj })  => obj.user ? obj.user.id : null)
+  @Transform(({ obj }) => (obj.user ? obj.user.id : null))
   @Expose()
   userId: number;
-
 }

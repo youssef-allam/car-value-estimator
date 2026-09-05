@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Report } from 'src/reports/reports.entity.ts/report.entity';
+import { Report } from 'src/reports/report.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -11,10 +11,9 @@ export class User {
   @Column()
   password: string;
 
-
-  @Column({ default: true})
+  @Column({ default: true })
   isAdmin: boolean;
 
-  @OneToMany(()=> Report, (report) => report.user)
+  @OneToMany(() => Report, (report) => report.user)
   reports: Report[];
 }
