@@ -22,7 +22,14 @@ switch (process.env.NODE_ENV) {
     });
     break;
   case 'prod':
-    // production DB config (e.g. Postgres)
+    Object.assign(dbconfig, {
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+      entities: ['**/*.entity.js'], // compiled entities
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
     break;
   default:
     throw new Error(`Unknown environment: ${process.env.NODE_ENV}`);
