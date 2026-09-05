@@ -1,5 +1,9 @@
 var dbconfig = {
     synchronize: false,
+    migrations: ['migrations/*.js'],
+    cli: {
+        migrationsDir: 'migrations',
+    },
 };
 
 
